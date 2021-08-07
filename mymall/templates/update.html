@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <style>
+            body {
+               
+                flex-direction: column;
+                text-align: center;
+                margin-top: 10%;
+               
+            }
+            
+            button {
+                background-color: greenyellow;
+                cursor: pointer;
+                width: 20%;
+            }
+            table {
+                background-color: lightblue;
+                flex-direction:  column;
+                width: 100%;
+                text-align: center;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1> Update Data of <img src='{{myid.image.url}}' height="50"></h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{fm.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </body>
+</html>
+
+

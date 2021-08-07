@@ -1,0 +1,68 @@
+
+<html>
+    <head>
+        
+        <style>
+            body {
+               
+                flex-direction: column;
+                text-align: center;
+                margin-top: 10%;
+               
+            }
+            
+            button {
+                background-color: greenyellow;
+                cursor: pointer;
+                width: 20%;
+            }
+            table {
+                background-color: lightblue;
+                flex-direction:  column;
+                width: 100%;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Insert Data</h1>
+        <div class="homep">
+
+            <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+           
+        </div> <br>
+
+        <div>
+            {% if myusers %}
+            <table style="width:100%">
+                    <tr>
+                    <th>Profile Pic</th>
+                    <th>Firstname</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                
+                    </tr>
+                    {% for users in myusers%}
+
+                        <tr>
+                        <td><img src="{{users.image.url}}" height="90"></td>
+                        <td>{{users.name}}</td>
+                        <td>{{users.age}}</td>
+                        <td>{{users.city}}</td>
+                        <td><a href="{% url 'updatedata' users.id %}" class="btn btn-primary">Edit</a> | <a href="{% url 'deletedata' users.id %}">Delete</a></td>
+                        </tr>
+                        
+                    {% endfor %}
+              </table>
+
+           
+
+            {% endif %}
+        </div>
+    </body>
+</html>
